@@ -1,21 +1,24 @@
 require("dotenv").config();
 const express = require("express");
 const sequelize = require("./db");
-const models = require('./models/models')
-
+const models = require("./models/models");
+const cors = require("cors");
+const router = require('./routes/index')
 
 const PORT = process.env.PORT || 5000;
 
-const app = express()
+const app = express();
+app.use(cors());
+app.use('/api', router)
 
 const start = async () => {
+  try {
     await sequelize.authenticate();
     await sequelize.sync();
-    try {
-        app.listen(PORT, () => console.log(`Сервер запушен на ${PORT} порту`))
-    }catch(e) {
-        console.log(e)
-    }
-}
+    app.listen(PORT, () => console.log(`Сервер запущен на порту ${PORT}`));
+  } catch (error) {
+    console.error("Ошибка при запуске сервера:", error);
+  }
+};
 
-start()
+start();
