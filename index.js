@@ -17,7 +17,7 @@ const start = async () => {
     await sequelize.sync();
     app.listen(PORT, () => console.log(`Сервер запущен на ${PORT} порту`));
   } catch (error) {
-    console.error("Ошибка при запуске сервера:", error);
+    console.error("Ошибка при запуске сервера пожалуйста эту ошибку:", error);
   }
 };
 
