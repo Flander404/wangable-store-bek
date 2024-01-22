@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 5000;
 const app = express();
 app.use(cors());
 app.use('/api', router)
+app.get('/', (req, res) => res.send('idex'))
 
 const start = async () => {
   try {
